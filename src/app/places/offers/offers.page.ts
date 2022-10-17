@@ -9,12 +9,12 @@ import { PlacesService } from '../places.service';
 })
 export class OffersPage implements OnInit {
 
-  loadedOffers: Place[];
+  offers: Place[];
 
   constructor(private placesService: PlacesService) { }
 
   ngOnInit() {
-    this.loadedOffers = this.placesService.places;
+    this.offers = this.placesService.places;
   }
 
 }
