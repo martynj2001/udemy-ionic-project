@@ -4,6 +4,11 @@
       <ion-back-button defaultHref="/places/tabs/offers"></ion-back-button>
     </ion-buttons>
     <ion-title>New Offer</ion-title>
+    <ion-buttons slot="primary">
+        <ion-button (click)="onCreateOfffer()">
+          <ion-icon slot="icon-only" name="checkmark"></ion-icon>
+        </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -11,16 +16,70 @@
 
   <ion-grid>
     <ion-row class="ion-align-items-center">
-      <ion-col size-sm="4" size-md="2" offset-sm="2" offset-md="4"> Row 1 Col 1 </ion-col>
-      <ion-col size-sm="4" size-md="3">
-        <ion-card>
-          <ion-card-content>
-            <h1>The Column</h1>
-            <p>Row 1 Col 2</p>
-          </ion-card-content>
-        </ion-card>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-item>
+          <ion-item>
+            <ion-label position="floating">Title</ion-label>
+            <ion-input type="text" autocomplete autocorrect></ion-input>
+          </ion-item>
+        </ion-item>
       </ion-col>
     </ion-row>
+    <ion-row class="ion-align-items-center">
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-item>
+          <ion-label position="floating">Short Description</ion-label>
+          <ion-textarea rows="3" autocomplete autocorrect></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center">
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-item>
+            <ion-label position="floating">Price</ion-label>
+            <ion-input type="number"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center">
+      <ion-col size-sm ="3" offset-sm="3">
+        <ion-item id="availFrom">
+          <ion-label>Available From:</ion-label>
+          <ion-note slot="end">{{availFromDate | date}}</ion-note>
+        </ion-item>
+        <ion-modal trigger="availFrom" [cssClass]="'center'">
+          <ng-template>
+            <ion-datetime
+              presentation="date"
+              [(ngModel)]="availFromDate"
+              size="cover"
+              [showDefaultButtons]="true">
+            </ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-col>
+
+      <ion-col size-sm="3">
+        <ion-item id="availTo">
+          <ion-label>Available To:</ion-label>
+          <ion-note slot="end">{{availToDate | date}}</ion-note>
+        </ion-item>
+        <ion-modal trigger="availTo" [cssClass]="'center'">
+          <ng-template>
+            <ion-datetime
+              presentation="date"
+              [(ngModel)]="availToDate"
+              size="cover"
+              [showDefaultButtons]="true">
+            </ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-col>
+
+
+
+    </ion-row>
+
   </ion-grid>
 
 </ion-content>

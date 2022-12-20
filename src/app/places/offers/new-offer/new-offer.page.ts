@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewOfferPage implements OnInit {
 
+  availToDate = new Date().toISOString();
+  availFromDate = new Date().toISOString();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onCreateOfffer(){
+    console.log('new Offer Created');
   }
 
 }
