@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-new-offer',
@@ -7,16 +8,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewOfferPage implements OnInit {
 
-  availToDate = new Date().toISOString();
-  availFromDate = new Date().toISOString();
+  today = new Date().toISOString();
+
+  form: FormGroup;
 
   constructor() { }
 
   ngOnInit() {
+
+    this.form = new FormGroup({
+      title: new FormControl(null, {
+        updateOn: 'blur',
+        validators: [Validators.required]
+      }),
+      description: new FormControl(null, {
+        updateOn: 'blur',
+        validators: [Validators.required, Validators.maxLength(180)]
+      }),
+      price: new FormControl(null, {
+        updateOn: 'blur',
+        validators: [Validators.required, Validators.min(1)]
+      }),
+      dateFrom: new FormControl(this.today, {
+        updateOn: 'blur',
+        validators: [Validators.required]
+      }),
+      dateTo: new FormControl(this.today, {
+        updateOn: 'blur',
+        validators: [Validators.required]
+      })
+    });
   }
 
   onCreateOfffer(){
-    console.log('new Offer Created');
+    console.log(this.form);
   }
 
 }
